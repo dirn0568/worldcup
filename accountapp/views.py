@@ -1,7 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
 
-def hello_world(request):
-    return HttpResponse("헬로월드 1시간의 사투끝에 적음!")
