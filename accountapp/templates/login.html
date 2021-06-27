@@ -6,12 +6,11 @@
 </head>
 <body>
   <h1>로그인사이트</h1>
-  <form method="GET" action="../">
-      <input type="submit">
-        ID <input type="text"/>
-        <p></p>
-        PassWord <input type="text"/>
-      </input>
+  <form method="post" action="../">
+      {% csrf_token %}
+        <p><label>ID : <input type="text" name="data"></label></p>
+        <p><label>PASSWORD : <input type="text" name="data"></label></p>
+      ` <p><input type="submit"></p>
   </form>
 </body>
 </html>
