@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LOGIN</title>
+    <title>Title</title>
 </head>
 <body>
-  <h1>로그인사이트</h1>
-  <form method="post" action="../">
-      {% csrf_token %}
-        <p><label>ID : <input type="text" name="data"></label></p>
-        <p><label>PASSWORD : <input type="text" name="data"></label></p>
-      ` <p><input type="submit"></p>
-  </form>
+  <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+          <div>
+              <h4>Login</h4>
+          </div>
+          <div>
+              <form action="{% url 'mainpage:mainpage' %}" method="post">
+                  {% csrf_token %}
+                  {{ form }}
+                  <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+              </form>
+          </div>
+  </div>
 </body>
 </html>

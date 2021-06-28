@@ -4,6 +4,4 @@ from django.shortcuts import render
 from django.urls import reverse
 
 def play(request):
-
-
     return render(request, 'play.html')
