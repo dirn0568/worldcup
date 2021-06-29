@@ -11,13 +11,20 @@
     <h3>
         <a href="loginpage/create">signup</a>
     </h3>
+    <a href="play"> start </a>
+    <a href="www.daum.com"> exit </a>
+    {% if not user.is_authenticated %}
     <h3>
         <a href="loginpage/login">login</a>
     </h3>
+    {% else %}
     <h3>
-        <a href="loginpage/detail">MyPage</a>
+        <a href="{% url 'accountapp:logout' %}">Logout</a>
     </h3>
-    <a href="play"> start </a>
-    <a href="www.daum.com"> exit </a>
+    <h3>
+        <a href="{% url 'accountapp:detail' pk=user.pk %}">MyPage</a>
+    </h3>
+    {% endif %}
+
 </body>
 </html>

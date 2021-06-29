@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
@@ -26,4 +26,8 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'detail.html'
-    paginate_by = 25
+
+
+# def detail(request):
+#     user = User.objects.filter(request.pk==User.pk)
+#     return render(request, 'detail.html', {'user': user})
