@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-  <body>
+  <body style="text-align:center;">
     <h1>Change Info</h1>
       <div>
 <!--          보낼때 pk는 왜 같이 보내는거지?-->
           <form action="{% url 'accountapp:update' pk=target_user.pk %}" method="post">
               {% csrf_token %}
-              {{ form }}
-              <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+              {% if user.pk == target_user.pk %}
+                  {{ form }}
+                <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+              {% else %}
+                <h3>잘못된 접근 입니다</h3>
+              {% endif %}
           </form>
       </div>
   </body>

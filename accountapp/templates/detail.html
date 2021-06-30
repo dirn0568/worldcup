@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-  <body>
+  <body style="text-align:center;">
     <h1>MyPage</h1>
       <div>
-          {{ user.date_joined }}
+          {{ target_user.date_joined }}
           <p></p>
-          {{ user.username }}
+          {{ target_user.username }}
           <p></p>
-          <a class="material-icons"
-             style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
-             href="{% url 'accountapp:update' pk=user.pk %}">
-              settings
-          </a>
-          <a class="material-icons"
-             style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
-             href="{% url 'accountapp:delete' pk=user.pk %}">
-              cancel
-          </a>
+          {% if user.pk == target_user.pk %}
+              <a class="material-icons"
+                 style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+                 href="{% url 'accountapp:update' pk=target_user.pk %}">
+                  settings
+              </a>
+              <a class="material-icons"
+                 style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
+                 href="{% url 'accountapp:delete' pk=target_user.pk %}">
+                  cancel
+              </a>
+          {% endif %}
       </div>
   <!--  {{form }} -->
   </body>
