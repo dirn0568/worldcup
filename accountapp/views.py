@@ -5,8 +5,9 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.forms import AccountUpdateForm
 from endpage import views
 
 
@@ -26,6 +27,19 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'detail.html'
+
+class AccountUpdateView(UpdateView):
+    model = User
+    context_object_name = 'target_user'
+    form_class = AccountUpdateForm
+    success_url = reverse_lazy('mainpage:mainpage')
+    template_name = 'update.html'
+
+class AccountDeleteView(DeleteView):
+    model = User
+    context_object_name = 'target_user'
+    success_url = reverse_lazy('mainpage:mainpage')
+    template_name = 'delete.html'
 
 
 # def detail(request):
