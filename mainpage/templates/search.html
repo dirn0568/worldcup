@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form action="." method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+  </form>
+  {% if search_term %}
+        {% for post in search_term %}
+          <a href="{% url 'accountapp:detail' pk=post.pk %}">
+              {{ search_term }}
+          </a>
+        {% endfor %}
+  {% endif %}
+</body>
+</html>
