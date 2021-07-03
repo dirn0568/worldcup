@@ -7,14 +7,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-from accountapp.forms import AccountUpdateForm
+from accountapp import models
+from accountapp.forms import AccountUpdateForm, ProfileCreationForm
+from accountapp.models import Profile
 from endpage import views
-
-
-# def login_page(request):
-#     return render(request, 'login.html')
-
-
 
 
 class AccountCreateView(CreateView):
@@ -41,6 +37,22 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('mainpage:mainpage')
     template_name = 'delete.html'
 
+
+
+class ProfileCreateView(CreateView):
+    model = Profile
+    context_object_name = 'target_user'
+    form_class = ProfileCreationForm
+    template_name = 'profile_create.html'
+
+    def form_valid(self, form):
+        temp_profile = form.save(commit=False)
+        temp_profile.user = self.request.user
+        temp_profile.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.user.pk})
 
 # def detail(request):
 #     user = User.objects.filter(request.pk==User.pk)

@@ -139,8 +139,13 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 장고에서 로그인을할때 html에서 form 태그로 다음 URL을 지정하면 오류가나니까 settings에서 LOGIN 또는 LOGOUT REDIRECT URL을 써야함
 LOGIN_REDIRECT_URL = reverse_lazy('mainpage:mainpage')
 LOGOUT_REDIRECT_URL = reverse_lazy('mainpage:mainpage')
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
