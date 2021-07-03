@@ -1,6 +1,7 @@
 import os
 
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.forms import forms
 from django.http import request, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -35,9 +36,10 @@ class SearchDetailView(FormView):
     #form이 유효할때 바로 밑에 함수 실행
     def form_valid(self, form):
         searchword = form.cleaned_data['search_word']
-        user = User.objects.filter(username=searchword)
+        user = User.objects.filter(Q(username__icontains=searchword))
         context = {}
         context['form'] = form
         context['search_term'] = user
+
         return render(self.request, self.template_name, context)
 
