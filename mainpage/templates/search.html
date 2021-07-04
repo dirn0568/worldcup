@@ -13,9 +13,13 @@
   {% if search_term %}
         {% for post in search_term %}
           <a href="{% url 'accountapp:detail' pk=post.pk %}">
-              <h2>{{ post.username }}</h2>
-              <h2>{{ post.is_active }}</h2>
+              <h2> {{ post.username }} <img src="{{ post.profile.image.url }}" alt=""
+                     style="height: 3rem; width: 3rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;"></h2>
+              <p>{{ post.profile.nickname }}</p>
           </a>
+            <p></p>
+            <hr>
+            <p></p>
         {% endfor %}
   {% endif %}
 </body>
