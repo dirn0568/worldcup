@@ -1,17 +1,31 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>div div{border:1 solid red;margin:5;padding:25; text-align:center;}</style>
     <body>
-      <h1>게임시작</h1>
-      {{ 'data' }}
+        <div style='width:100%; height:400px;float:left;'>
+          <div style="width:25%; height:330px; float:left;">
+              <video controls preload="none" src="{% static '001.webm' %}" width="560" height="315"></video>
+              <h1>Meteo</h1>
+          </div>
+
+          <div style="width:25%; height:330px; float:right;">
+              <video controls preload="none" src="{% static '003.webm' %}" width="560" height="315" coords="100,465,401,434"></video>
+              <h1>밝게빛나는 별이되어 비춰줄게     ㅁㄴㅇㄻㄴㅇㄻㄴㄻ</h1>
+          </div>
+
+            <div style="width:50%; height:134px; float:left;">
+              <h1> VS </h1>
+            </div>
 <!--      <iframe width="560" height="315" src="https://www.youtube.com/embed/lOrU0MH0bMk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;-->
 <!--       gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-<!--        <video controls preload="none">-->
-<!--            <source src="startpage/001.webm" type="video/webm">-->
-<!--        </video>-->
+<!--      <video controls preload="none">-->
+<!--          <source src="static/001.webm" type="video/webm">-->
+<!--      </video>-->
 <!--          <video controls preload="none">-->
 <!--            <source src="./003.webm" type="video/webm">-->
 <!--        </video>-->
