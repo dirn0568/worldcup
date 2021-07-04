@@ -15,14 +15,18 @@
                       {{ target_user.profile.message }}
                   </h5>
                     <h5>
-                        <a href="{% url 'accountapp:profile_update' pk=target_user.profile.pk %}">
-                            edit
-                        </a>
+                        {% if user.pk == target_user.pk %}
+                            <a href="{% url 'accountapp:profile_update' pk=target_user.profile.pk %}">
+                                edit
+                            </a>
+                        {% endif %}
                     </h5>
           {% else %}
-          <a href="{% url 'accountapp:profile_create' %}">
-              Create Profile
-          </a>
+            {% if user.pk == target_user.pk %}
+                <a href="{% url 'accountapp:profile_create' %}">
+                    Create Profile
+                </a>
+            {% endif %}
           {% endif %}
           <p></p>
           {{ target_user.username }}
