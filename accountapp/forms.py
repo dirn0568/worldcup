@@ -16,3 +16,7 @@ class ProfileCreationForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['image', 'nickname', 'message']
+
+class ProfileUpdateForm(ProfileCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

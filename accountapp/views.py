@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp import models
-from accountapp.forms import AccountUpdateForm, ProfileCreationForm
+from accountapp.forms import AccountUpdateForm, ProfileCreationForm, ProfileUpdateForm
 from accountapp.models import Profile
 from endpage import views
 
@@ -41,7 +41,7 @@ class AccountDeleteView(DeleteView):
 
 class ProfileCreateView(CreateView):
     model = Profile
-    context_object_name = 'target_user'
+    context_object_name = 'target_profile'
     form_class = ProfileCreationForm
     template_name = 'profile_create.html'
 
@@ -53,6 +53,16 @@ class ProfileCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk': self.object.user.pk})
+
+class ProfileUpdateView(UpdateView):
+    model = Profile
+    context_object_name = 'target_profile'
+    form_class = ProfileUpdateForm
+    template_name = 'profile_update.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.user.pk})
+
 
 # def detail(request):
 #     user = User.objects.filter(request.pk==User.pk)

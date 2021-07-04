@@ -14,6 +14,11 @@
                   <h5>
                       {{ target_user.profile.message }}
                   </h5>
+                    <h5>
+                        <a href="{% url 'accountapp:profile_update' pk=target_user.profile.pk %}">
+                            edit
+                        </a>
+                    </h5>
           {% else %}
           <a href="{% url 'accountapp:profile_create' %}">
               Create Profile
