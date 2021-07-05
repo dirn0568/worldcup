@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{ target_pretty.title }}
+    <p></p>
+    {{ target_pretty.nickname }}
+    <p></p>
+        {% for post in target_pretty.image %}
+            <img src="{{ post.image.url }}" alt="" style="height: 3rem; width: 3rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+                {{ target_pretty.title }}
+        {% endfor %}
+</body>
+</html>

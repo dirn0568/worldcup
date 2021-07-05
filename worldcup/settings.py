@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'mainpage',
     'startpage',
     'endpage',
+    'prettyapp'
 ]
 
 MIDDLEWARE = [
