@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var imgArray= new Array();
+        imgArray[0]="../static/bg01.png";
+        imgArray[1]="../static/bg02.png";
+        imgArray[2]="../static/bg03.png";
+        imgArray[3]="../static/bg04.png";
+
+        function showImage()
+        {
+            var imgNum=Math.round(Math.random()*3);
+            var objImg=document.getElementById("introImg");
+            objImg.src=imgArray[imgNum];
+
+            var imgNum2=Math.round(Math.random()*3);
+            while (imgNum == imgNum2){
+                var imgNum2=Math.round(Math.random()*3);
+            }
+            var objImg2=document.getElementById("introImg2");
+            objImg2.src=imgArray[imgNum2];
+
+        }
+    </script>
+</head>
+    <body onload="showImage()">
+        <img id="introImg" border="0">
+        <img id="introImg2" border="0">
+    </body>
+</html>
