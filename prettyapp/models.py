@@ -11,3 +11,8 @@ class PrettyModel(models.Model):
 
     # def __str__(self):
     #     return f'{self.pk} : {self.title}'
+
+class TestDataModel(models.Model):
+    image = models.ImageField(upload_to='pretty/', null=True)
+    title = models.CharField(max_length=20, null=False)
+    nickname = models.CharField(max_length=20, unique=True, null=True)

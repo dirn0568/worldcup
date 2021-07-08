@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="./game_test" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+
+        {{ context.img }}
+</body>
+</html>

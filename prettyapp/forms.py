@@ -1,13 +1,19 @@
 from django.forms import ModelForm
 
 from django import forms
-from prettyapp.models import PrettyModel
+from prettyapp.models import PrettyModel, TestDataModel
 
 
 class PrettyCreationForm(ModelForm):
     class Meta:
         model = PrettyModel
         fields = ['image', 'title', 'nickname']
+
+class TestDataForm(ModelForm):
+    class Meta:
+        model = TestDataModel
+        fields = ['image', 'title', 'nickname']
+
 
 
 # class MaskCreationForm(forms.Form):

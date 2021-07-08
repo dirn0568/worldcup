@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript">
+
         var imgArray= new Array();
         imgArray[0]="../static/bg01.png";
         imgArray[1]="../static/bg02.png";
         imgArray[2]="../static/bg03.png";
         imgArray[3]="../static/bg04.png";
 
+
         function showImage()
         {
             var imgNum=Math.round(Math.random()*3);
             var objImg=document.getElementById("introImg");
             objImg.src=imgArray[imgNum];
+
+<!--            var print(imgNum)-->
 
             var imgNum2=Math.round(Math.random()*3);
             while (imgNum == imgNum2){
@@ -28,7 +31,17 @@
     </script>
 </head>
     <body onload="showImage()">
-        <img id="introImg" border="0">
-        <img id="introImg2" border="0">
+        <form action="{% url 'game:test5' %}" method="post">
+            {% csrf_token %}
+            <img id="introImg">
+            form
+            <input type="submit" value="imgNum" class="btn btn-dark rounded-pill col-6 mt-3">
+        </form>
+        <form action="{% url 'game:test5' %}" method="post">
+            {% csrf_token %}
+            <img id="introImg2">
+            num = imgNum2
+            <input type="submit" value="imgNum2" class="btn btn-dark rounded-pill col-6 mt-3">
+        </form>
     </body>
 </html>

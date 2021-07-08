@@ -29,20 +29,30 @@
             {% endif %}
           {% endif %}
           <p></p>
-          {{ target_user.username }}
+          <h1>{{ target_user.username }}</h1>
           <p></p>
-          {{ target_user.date_joined }}
+
           {% if user.pk == target_user.pk %}
-              <a class="material-icons"
-                 style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
-                 href="{% url 'accountapp:update' pk=target_user.pk %}">
-                  settings
-              </a>
-              <a class="material-icons"
-                 style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
-                 href="{% url 'accountapp:delete' pk=target_user.pk %}">
-                  cancel
-              </a>
+          <a href="{% url 'articleapp:article_create' %}">
+              <h1>Create Articles</h1>
+          </a>
+          {% for article in object_list %}
+          <a href="{% url 'articleapp:article_detail' pk=article.pk %}">
+              <img src="{{ article.article_img.url }}" alt=""
+                 style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+          </a>
+          {% endfor %}
+          <p></p>
+          <a class="material-icons"
+             style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+             href="{% url 'accountapp:update' pk=target_user.pk %}">
+              settings
+          </a>
+          <a class="material-icons"
+             style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
+             href="{% url 'accountapp:delete' pk=target_user.pk %}">
+              cancel
+          </a>
           {% endif %}
       </div>
   <!--  {{form }} -->

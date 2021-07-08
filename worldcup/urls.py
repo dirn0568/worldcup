@@ -25,5 +25,7 @@ urlpatterns = [
     path('endpage/', include('endpage.urls')),
     path('loginpage/', include('accountapp.urls')),
     path('pretty/', include('prettyapp.urls')),
+    path('article/', include('articleapp.urls')),
+
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # static, settings.MEDIA_URL, document_root 다 뭔 뜻임

@@ -11,4 +11,6 @@ urlpatterns = [
     path('photo_detail/<int:pk>', PrettyDetailView.as_view(), name='photo_detail'),
 
     path('test', views.random_pick, name='test'),
+
+    # path('test_data', )
 ]

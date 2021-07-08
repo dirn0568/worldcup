@@ -4,11 +4,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
-from django.views.generic import CreateView, DetailView, FormView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, DetailView, FormView, ListView, DeleteView, UpdateView
 
 from prettyapp.forms import PrettyCreationForm
-from prettyapp.models import PrettyModel
+from prettyapp.models import PrettyModel, TestDataModel
 
 
 class PrettyCreationView(CreateView): #FormView도 생각해보기
@@ -20,15 +20,45 @@ class PrettyCreationView(CreateView): #FormView도 생각해보기
         return reverse('mainpage:mainpage')
 
 
-class PrettyDetailView(DetailView): #FormView도 생각해보기
+class PrettyDetailView(DetailView):  # FormView도 생각해보기
     model = PrettyModel
-    context_object_name = 'target_pretty'
+    #context_object_name = 'target_pretty'
     template_name = 'photo_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PrettyDetailView, self).get_context_data(**kwargs)
+        context['data_list'] = PrettyModel.objects.all()
+        return context
+
+class test_data(UpdateView):
+    model = TestDataModel
+    success_url = reverse_lazy('articleapp:list')
+#class PrettyDeleteView(DeleteView):
+
+
+
+
+# class PrettyDetailView(ListView): #FormView도 생각해보기
+#     model = PrettyModel
+#     context_object_name = 'target_pretty'
+#     template_name = 'photo_detail.html'
+#
+#     number = random.randrange(1, 5)
+#     number2 = random.randrange(1, 5)
+#     context = {'number': number, 'number2': number2}
+#
+#     def get_context_object_name(self, object_list):
+#
+#     return render(self.request, self.template_name, context)
 
 def random_pick(request):
     number = random.randrange(1, 5)
+    #number2 = random.randrange(1, 5)
+
+    #context = {'number': number, 'number2': number2}
     return HttpResponseRedirect(reverse('prettyapp:photo_detail', args=[number]))
     #return render(request, '../pretty/photo_detail/number', {'number': number})
+    # return reverse(request, '../pretty/photo_detail', context)
 
 # class MaskCreationView(FormView):
 #     form_class = MaskCreationForm

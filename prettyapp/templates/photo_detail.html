@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
+    {{ data_list }}
+    {% for post in data_list %}
+        <form action="../pretty/test_data" method="post">
+            {% csrf_token %}
+            <img src="{{ post.image.url }}" alt="">
+            <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+        </form>
+        <p></p>
+    {% endfor %}
+    <p></p>
+    {{ target_pretty }}
+    <p></p>
     {{ target_pretty.title }}
     <p></p>
     {{ target_pretty.nickname }}

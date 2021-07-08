@@ -6,10 +6,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp import models
 from accountapp.forms import AccountUpdateForm, ProfileCreationForm, ProfileUpdateForm
 from accountapp.models import Profile
+from articleapp.models import ArticleCreateModel
 from endpage import views
 
 
@@ -19,10 +21,14 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('accountapp:login')
     template_name = 'create.html'
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'detail.html'
+
+    def get_context_data(self, **kwargs):
+        object_list = ArticleCreateModel.objects.filter(article=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 class AccountUpdateView(UpdateView):
     model = User
