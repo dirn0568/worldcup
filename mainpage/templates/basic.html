@@ -33,6 +33,14 @@
         <a href="{% url 'accountapp:detail' pk=user.pk %}">MyPage</a>
     </h3>
     {% endif %}
+    {% for article in object_list %}
+    <a href="{% url 'articleapp:article_detail' pk=article.pk %}">
+        <img src="{{ article.article_img.url }}" alt=""
+             style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+    </a>
+    {% endfor %}
+
+    {% include 'pagination_test.html' with page_obj=page_obj %}
 
 </body>
 </html>
