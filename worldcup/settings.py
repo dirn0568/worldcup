@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'endpage',
     'prettyapp',
     'articleapp',
+    'commentapp',
 ]
 
 MIDDLEWARE = [

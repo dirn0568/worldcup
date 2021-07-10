@@ -1,0 +1,8 @@
+<div>
+    <form action="{% url 'commentapp:comment' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="article_pk" value="{{ article.pk }}">
+    </form>
+</div>
+

@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="text-align:center;">
     {{ target_article.article_title }}
     {{ target_article.article_text }}
-    <img src="{{ target_article.article_img.url }}" alt="">
+    <img src="{{ target_article.article_img.url }}" alt=""
+         style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+    <p></p>
+    {% for comment in object_list %}
+        {{ comment.comment_text }}
+        <p></p>
+    {% endfor %}
+
+    {% include 'comment.html' with article=target_article %}
+
 </body>
 </html>
