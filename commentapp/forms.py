@@ -11,3 +11,7 @@ class CommentForms(ModelForm):
     class Meta:
         model = CommentModel
         fields = ['comment_text']
+
+class CommentUpdateForm(CommentForms):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
