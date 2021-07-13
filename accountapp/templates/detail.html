@@ -37,6 +37,8 @@
                   <h1>Create Articles</h1>
               </a>
           {% endif %}
+          <hr>
+          <h1>Article List</h1>
           {% for article in object_list %}
               <a href="{% url 'articleapp:article_detail' pk=article.pk %}">
                   <img src="{{ article.article_img.url }}" alt=""

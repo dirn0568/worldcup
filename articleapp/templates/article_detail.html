@@ -17,13 +17,15 @@
         <p></p>
         {{ comment.comment_text }}
         <p></p>
-        <a href="{% url 'commentapp:comment_update' pk=comment.pk %}">
-            Update
-        </a>
-        <a href="{% url 'commentapp:comment_delete' pk=comment.pk %}">
-            Delete
-        </a>
-        <p></p>
+        {% if user == comment.writer_nickname.user %}
+            <a href="{% url 'commentapp:comment_update' pk=comment.pk %}">
+                Update
+            </a>
+            <a href="{% url 'commentapp:comment_delete' pk=comment.pk %}">
+                Delete
+            </a>
+            <p></p>
+        {% endif %}
     {% endfor %}
 
     {% include 'comment.html' with article=target_article %}
