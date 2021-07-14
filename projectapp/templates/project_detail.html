@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  {{ target_project_detail.project_title }}
+  <p></p>
+  <hr>
+  <img src="{{ target_project_detail.project_img.url }}" alt=""
+      style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+  <p></p>
+  <hr>
+  {{ target_project_detail.project_text }}
+  <p></p>
+  <h1>게시글 목록</h1>
+  {% for project_article in object_list %}
+    <hr>
+    <img src="{{ project_article.article_img.url }}" alt=""
+         style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+    <p></p>
+    {{ project_article.article_title }}
+    <p></p>
+    {{ project_article.article_text }}
+    <p></p>
+
+  {% endfor %}
+
+
+  <a href="{% url 'projectapp:project_article_create' pk=target_project_detail.pk %}">
+      <h1>Article Create</h1>
+  </a>
+</body>
+</html>

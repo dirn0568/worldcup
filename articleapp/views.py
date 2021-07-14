@@ -11,6 +11,7 @@ from articleapp.forms import ArticleCreateForm
 from articleapp.models import ArticleCreateModel
 from commentapp.forms import CommentForms
 from commentapp.models import CommentModel
+from projectapp.models import ProjectCreateModel
 
 
 class ArticleCreateView(CreateView):
