@@ -14,6 +14,23 @@
   <hr>
   {{ target_project_detail.project_text }}
   <p></p>
+
+
+  {% if user.is_authenticated %}
+    {% if not subscription %}
+      <a href="{% url 'subscribeapp:subscription' %}?project_pk={{ target_project_detail.pk }}"
+         class="btn btn-primary rounded-pill px-4">
+        Subscribe
+      </a>
+    {% else %}
+      <a href="{% url 'subscribeapp:subscription' %}?project_pk={{ target_project_detail.pk }}"
+         class="btn btn-primary rounded-pill px-4">
+        Unsubscribe
+      </a>
+    {% endif %}
+  {% endif %}
+
+
   <h1>게시글 목록</h1>
   {% for project_article in object_list %}
     <hr>
@@ -26,7 +43,6 @@
     <p></p>
 
   {% endfor %}
-
 
   <a href="{% url 'projectapp:project_article_create' pk=target_project_detail.pk %}">
       <h1>Article Create</h1>

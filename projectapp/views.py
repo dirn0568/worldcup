@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
 from django.views.generic import CreateView, DetailView, FormView, ListView
 
 from articleapp.forms import ArticleCreateForm
@@ -8,6 +9,7 @@ from articleapp.models import ArticleCreateModel
 from commentapp.forms import CommentForms
 from projectapp.forms import ProjectCreateForm
 from projectapp.models import ProjectCreateModel
+from subscribeapp.models import SubscribeCreateModel
 
 
 class ProjectCreateView(CreateView):
@@ -30,7 +32,18 @@ class ProjectDetailView(DetailView, FormView):
 
     def get_context_data(self, **kwargs):
         object_list = ArticleCreateModel.objects.filter(article_project=self.get_object())
-        return super(ProjectDetailView, self).get_context_data(object_list=object_list, **kwargs)
+        print(self.object, '##########################')
+        project = self.object
+        user = self.request.user
+
+        if user.is_authenticated:
+            subscription = SubscribeCreateModel.objects.filter(subscribe_project=project, subscribe_user=user)
+        else:
+            subscription = None
+
+        return super(ProjectDetailView, self).get_context_data(object_list=object_list,
+                                                               subscription=subscription,
+                                                               **kwargs)
 
 
 class ProjectArticleView(DetailView, FormView):
@@ -49,4 +62,6 @@ class ProjectArticleView(DetailView, FormView):
         temp_article.article_project = ProjectCreateModel.objects.get(pk=self.request.POST['project_pk'])
         temp_article.save()
         return super().form_valid(form)
+
+
 
