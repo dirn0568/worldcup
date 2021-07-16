@@ -36,6 +36,9 @@
     <h3>
         <a href="{% url 'projectapp:project_list' %}">Project</a>
     </h3>
+    <h3>
+        <a href="{% url 'subscribeapp:subscribe_list' %}">Subscription</a>
+    </h3>
     {% for article in object_list %}
     <a href="{% url 'articleapp:article_detail' pk=article.pk %}">
         <img src="{{ article.article_img.url }}" alt=""

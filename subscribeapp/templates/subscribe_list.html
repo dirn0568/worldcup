@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{ article_subscribe }}
+    <p></p>
+    {% for subscribe in article_subscribe %}
+        {{ subscribe.article_title }}
+        <img src="{{ subscribe.article_img.url }}" alt=""
+                 style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+    <p></p>
+
+    {% endfor %}
+    <h1>
+</body>
+</html>
