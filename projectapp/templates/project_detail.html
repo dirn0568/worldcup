@@ -15,6 +15,18 @@
   {{ target_project_detail.project_text }}
   <p></p>
 
+  {% if user == target_project_detail.project %}
+  <a href="{% url 'projectapp:project_update' pk=target_project_detail.pk %}"
+     class="btn btn-primary rounded-pill px-4">
+    Project Update
+  </a>
+  <a href="{% url 'projectapp:project_delete' pk=target_project_detail.pk %}"
+     class="btn btn-primary rounded-pill px-4">
+    Project Delete
+  </a>
+  {% endif %}
+
+  <p></p>
 
   {% if user.is_authenticated %}
     {% if not subscription %}

@@ -1,0 +1,6 @@
+
+<form action="{% url 'projectapp:project_search' %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+</form>

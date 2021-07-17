@@ -1,13 +1,16 @@
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
-from django.views.generic import CreateView, DetailView, FormView, ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, DetailView, FormView, ListView, UpdateView, DeleteView
 
 from articleapp.forms import ArticleCreateForm
 from articleapp.models import ArticleCreateModel
 from commentapp.forms import CommentForms
-from projectapp.forms import ProjectCreateForm
+from mainpage.forms import PostSearchForm
+from projectapp.forms import ProjectCreateForm, ProjectUpdateForm
 from projectapp.models import ProjectCreateModel
 from subscribeapp.models import SubscribeCreateModel
 
@@ -17,8 +20,15 @@ class ProjectCreateView(CreateView):
     form_class = ProjectCreateForm
     template_name = 'project_create.html'
 
-class ProjectListView(ListView):
+    def form_valid(self, form):
+        temp_project = form.save(commit=False)
+        temp_project.project = self.request.user
+        temp_project.save()
+        return super().form_valid(form)
+
+class ProjectListView(ListView, FormView):
     model = ProjectCreateModel
+    form_class = PostSearchForm
     context_object_name = 'target_project'
     template_name = 'project_list.html'
 
@@ -45,6 +55,19 @@ class ProjectDetailView(DetailView, FormView):
                                                                subscription=subscription,
                                                                **kwargs)
 
+class ProjectUpdateView(UpdateView):
+    model = ProjectCreateModel
+    form_class = ProjectUpdateForm
+    success_url = reverse_lazy('mainpage:mainpage')
+    context_object_name = 'target_project_update'
+    template_name = 'project_update.html'
+
+class ProjectDeleteView(DeleteView):
+    model = ProjectCreateModel
+    context_object_name = 'target_project_delete'
+    success_url = reverse_lazy('mainpage:mainpage')
+    template_name = 'project_delete.html'
+
 
 class ProjectArticleView(DetailView, FormView):
     model = ProjectCreateModel
@@ -62,6 +85,19 @@ class ProjectArticleView(DetailView, FormView):
         temp_article.article_project = ProjectCreateModel.objects.get(pk=self.request.POST['project_pk'])
         temp_article.save()
         return super().form_valid(form)
+
+class ProjectSearchForm(FormView):
+    form_class = PostSearchForm
+    template_name = 'project_list.html'
+
+    def form_valid(self, form):
+        searchword = form.cleaned_data['search_word']
+        user = User.objects.filter(username=searchword)
+
+        for entp in user:
+            return HttpResponseRedirect(reverse('accountapp:detail', args=[entp.pk]))
+
+
 
 
 

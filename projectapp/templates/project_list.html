@@ -8,22 +8,20 @@
     <h1>
         이상형 월드컵111111
     </h1>
-    <form action="." method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
-    </form>
+
+    {% include 'project_search.html' %}
+
     <h3>
-        <a href="search">상세 검색</a>
+        <a href="{% url 'mainpage:search' %}">상세 검색</a>
     </h3>
     <h3>
-        <a href="loginpage/create">signup</a>
+        <a href="{% url 'accountapp:create' %}">signup</a>
     </h3>
     <a href="play"> start </a>
     <a href="www.daum.com"> exit </a>
     {% if not user.is_authenticated %}
     <h3>
-        <a href="loginpage/login">login</a>
+        <a href="{% url 'accountapp:login' %}">login</a>
     </h3>
     {% else %}
     <h3>
@@ -34,10 +32,11 @@
     </h3>
     {% endif %}
     <h3>
-        <a href="{% url 'projectapp:project_list' %}">Project</a>
+        <a href="{% url 'mainpage:mainpage' %}">MainPage</a>
     </h3>
-
-
+    <h3>
+        <a href="{% url 'subscribeapp:subscribe_list' %}">Subscription</a>
+    </h3>
 
 
     {% for project in target_project %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>정말로 삭제하시겠습니까?</h1>
+    <form action="{% url 'projectapp:project_delete' pk=target_project_delete.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if user.pk == target_project_delete.project.pk %}
+        <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+        {% else %}
+        잘못된 접근입니다.
+        {% endif %}
+    </form>
+</body>
+</html>

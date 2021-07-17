@@ -4,10 +4,10 @@ from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from django.views.generic.list import MultipleObjectMixin
 
-from articleapp.forms import ArticleCreateForm
+from articleapp.forms import ArticleCreateForm, ArticleUpdateForm
 from articleapp.models import ArticleCreateModel
 from commentapp.forms import CommentForms
 from commentapp.models import CommentModel
@@ -38,3 +38,17 @@ class ArticleDetailView(DetailView, FormMixin):
     def get_context_data(self, **kwargs):
         object_list = CommentModel.objects.filter(writer=self.get_object())
         return super(ArticleDetailView, self).get_context_data(object_list=object_list, **kwargs)
+
+class ArticleUpdateView(UpdateView):
+    model = ArticleCreateModel
+    context_object_name = 'target_article_update'
+    form_class = ArticleUpdateForm
+    success_url = reverse_lazy('mainpage:mainpage')
+    template_name = 'article_update.html'
+
+
+class ArticleDeleteView(DeleteView):
+    model = ArticleCreateModel
+    context_object_name = 'target_article_delete'
+    success_url = reverse_lazy('mainpage:mainpage')
+    template_name = 'article_delete.html'

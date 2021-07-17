@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'projectapp:project_update' pk=target_project_update.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if user.pk == target_project_update.project.pk %}
+        {{ form }}
+        <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+        {% else %}
+        잘못된 접근입니다.
+        {% endif %}
+    </form>
+</body>
+</html>
