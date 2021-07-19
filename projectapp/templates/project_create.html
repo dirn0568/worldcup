@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+{% load bootstrap4 %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+{% include 'base.css' %}
+
 <body>
     <body style="text-align:center;">
       <h1>Create Project</h1>
       <form action="{% url 'projectapp:project_create' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form }}
+          {% bootstrap_form form %}
           <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
       </form>
     </body>
