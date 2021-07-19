@@ -12,9 +12,11 @@ from django.urls import reverse
 from django.views.generic import FormView, DetailView, ListView
 from django.views.generic.list import MultipleObjectMixin
 
+import worldcup
 from accountapp import views
 from articleapp.models import ArticleCreateModel
 from mainpage.forms import PostSearchForm, PostDetailForm
+from worldcup.settings import BASE_DIR
 
 
 class SearchFormView(FormView, ListView):
@@ -27,7 +29,7 @@ class SearchFormView(FormView, ListView):
     def form_valid(self, form):
         searchword = form.cleaned_data['search_word']
         user = User.objects.filter(username=searchword)
-
+        print(BASE_DIR, '############################')
         for entp in user:
             return HttpResponseRedirect(reverse('accountapp:detail', args=[entp.pk]))
             # kwargs, args 둘다 가능, 하지만 두개를 같이 쓰는건 불가능, reverse만 써도 불가능 HRR이 같이 있어야함

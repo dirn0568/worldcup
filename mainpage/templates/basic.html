@@ -1,51 +1,64 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>initial_page</title>
 </head>
-<body style="text-align:center;">
-    <h1>
-        이상형 월드컵
-    </h1>
-    <form action="." method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
-    </form>
-    <h3>
-        <a href="search">상세 검색</a>
-    </h3>
-    <h3>
-        <a href="loginpage/create">signup</a>
-    </h3>
-    <a href="play"> start </a>
-    <a href="www.daum.com"> exit </a>
-    {% if not user.is_authenticated %}
-    <h3>
-        <a href="{% url 'accountapp:login' %}">login</a>
-    </h3>
-    {% else %}
-    <h3>
-        <a href="{% url 'accountapp:logout' %}">Logout</a>
-    </h3>
-    <h3>
-        <a href="{% url 'accountapp:detail' pk=user.pk %}">MyPage</a>
-    </h3>
-    {% endif %}
-    <h3>
-        <a href="{% url 'projectapp:project_list' %}">Project</a>
-    </h3>
-    <h3>
-        <a href="{% url 'subscribeapp:subscribe_list' %}">Subscription</a>
-    </h3>
-    {% for article in object_list %}
-    <a href="{% url 'articleapp:article_detail' pk=article.pk %}">
-        <img src="{{ article.article_img.url }}" alt=""
-             style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
-    </a>
-    {% endfor %}
+<style>
+    .container {
+        padding-top: 1rem;
+        padding-right: 0;
+        padding-bottom: 0;
+        padding-left: 15rem;
+    }
 
+    .container a {
+        width: 45%;
+        max-width: 250px;
+    }
+
+    .container img {
+      width: 100%;
+      border-radius: 1rem;
+    }
+</style>
+<body>
+    <div style="text-align: center;">
+        <h1>
+            개인 연습용 페이지
+        </h1>
+        <div style="padding:0px 5px 0px 0px;">
+            <h3>
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+            </form>
+            </h3>
+        </div>
+        <h3>
+            <a href="search">상세 검색</a>
+            <a href="loginpage/create">signup</a>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'accountapp:login' %}">login</a>
+            {% else %}
+                <a href="{% url 'accountapp:logout' %}">Logout</a>
+                <a href="{% url 'accountapp:detail' pk=user.pk %}">MyPage</a>
+                <a href="{% url 'subscribeapp:subscribe_list' %}">Subscription</a>
+            {% endif %}
+                <a href="{% url 'projectapp:project_list' %}">Project</a>
+        </h3>
+        <hr>
+    </div>
+    <div class="container">
+        {% for article in object_list %}
+        <a href="{% url 'articleapp:article_detail' pk=article.pk %}">
+            <img src="{{ article.article_img.url }}" alt="">
+        </a>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
     {% include 'pagination_test.html' with page_obj=page_obj %}
 
 </body>

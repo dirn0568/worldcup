@@ -1,0 +1,24 @@
+    .container {
+        padding-top: 1rem;
+        padding-right: 0rem;
+        padding-bottom: 0rem;
+        padding-left: 15rem;
+    }
+
+    .container a {
+        width: 45%;
+        max-width: 250px;
+    }
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1rem;
+    }
+
+    .container img {
+      width: 100%;
+      border-radius: 1rem;
+    }

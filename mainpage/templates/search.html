@@ -1,14 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="base.css">
 </head>
 <body>
   <form action="." method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Submit" class="btn btn-primary btn-sm">
   </form>
   {% if search_term %}
         {% for post in search_term %}

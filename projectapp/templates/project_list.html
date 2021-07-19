@@ -4,47 +4,36 @@
     <meta charset="UTF-8">
     <title>initial_page</title>
 </head>
+
 <body style="text-align:center;">
     <h1>
-        이상형 월드컵111111
+        개인 연습용 페이지
     </h1>
-
-    {% include 'project_search.html' %}
-
+    <div style="padding:0px 5px 0px 0px;">
+        {% include 'project_search.html' %}
+    </div>
     <h3>
         <a href="{% url 'mainpage:search' %}">상세 검색</a>
-    </h3>
-    <h3>
         <a href="{% url 'accountapp:create' %}">signup</a>
+        {% if not user.is_authenticated %}
+            <a href="{% url 'accountapp:login' %}">login</a>
+        {% else %}
+            <a href="{% url 'accountapp:logout' %}">Logout</a>
+            <a href="{% url 'accountapp:detail' pk=user.pk %}">MyPage</a>
+            <a href="{% url 'subscribeapp:subscribe_list' %}">Subscription</a>
+        {% endif %}
+            <a href="{% url 'mainpage:mainpage' %}">MainPage</a>
     </h3>
-    <a href="play"> start </a>
-    <a href="www.daum.com"> exit </a>
-    {% if not user.is_authenticated %}
-    <h3>
-        <a href="{% url 'accountapp:login' %}">login</a>
-    </h3>
-    {% else %}
-    <h3>
-        <a href="{% url 'accountapp:logout' %}">Logout</a>
-    </h3>
-    <h3>
-        <a href="{% url 'accountapp:detail' pk=user.pk %}">MyPage</a>
-    </h3>
-    {% endif %}
-    <h3>
-        <a href="{% url 'mainpage:mainpage' %}">MainPage</a>
-    </h3>
-    <h3>
-        <a href="{% url 'subscribeapp:subscribe_list' %}">Subscription</a>
-    </h3>
+    <hr>
 
-
+    <div style="padding:2rem 5px 0px 0px;">
     {% for project in target_project %}
-    <a href="{% url 'projectapp:project_detail' pk=project.pk %}">
-        <img src="{{ project.project_img.url }}" alt=""
-             style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
-    </a>
+        <a href="{% url 'projectapp:project_detail' pk=project.pk %}">
+            <img src="{{ project.project_img.url }}" alt=""
+                 style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+        </a>
     {% endfor %}
+    </div>
     <h1>
         <a href="{% url 'projectapp:project_create' %}">Project Create</a>
     </h1>
