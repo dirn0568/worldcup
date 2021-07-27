@@ -5,10 +5,24 @@
     <title>Title</title>
 </head>
 <body style="text-align:center;">
-    {{ target_article.article_title }}
-    {{ target_article.article_text }}
     <img src="{{ target_article.article_img.url }}" alt=""
          style="height: 12rem; width: 12rem; border-radius: 10rem; margin-bottom: 2rem; object-fit: cover;">
+    <p></p>
+    {% for message in messages %}
+        <div class="text-center">
+            <div class="btn btn-success rounded-pill px-5 my-3">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+    {{ target_article.article_title }}
+    {{ target_article.article_text }}
+    <p></p>
+    <a href="{% url 'likeapp:article_like' pk=target_article.pk %}">
+        <span>
+            {{ target_article.like }}
+        </span>
+    </a>
     <p></p>
     {% if user.pk == target_article.article.pk %}
         <a href="{% url 'articleapp:article_update' pk=target_article.pk %}">

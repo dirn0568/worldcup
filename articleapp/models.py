@@ -12,3 +12,5 @@ class ArticleCreateModel(models.Model):
     article_img = models.ImageField(upload_to='article/', null=True)
     article_title = models.CharField(max_length=30, unique=True, null=True)
     article_text = models.TextField(max_length=200, null=True)
+
+    like = models.IntegerField(default=0)
