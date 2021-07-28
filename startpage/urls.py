@@ -1,7 +1,7 @@
 from django.urls import path, reverse
 
 from startpage import views
-from startpage.views import GameDetailView
+from startpage.views import GameDetailView, GameTetrisView
 
 app_name='game'
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('test5', views.test5, name='test5'),
 
     path('game_test', GameDetailView.as_view(), name='game_test'),
+    path('tetris_test', views.GameTetrisView, name='tetris_test'),
 ]
 

@@ -38,3 +38,8 @@ class GameDetailView(FormView):
         context['choice'] = choice_img
 
         return render(self.request, self.template_name, context)
+
+
+def GameTetrisView(request):
+
+    return render(request, 'tetris_test.html')
