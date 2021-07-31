@@ -42,4 +42,8 @@ class GameDetailView(FormView):
 
 def GameTetrisView(request):
 
-    return render(request, 'tetris_test.html')
+    return render(request, 'tetris.html')
+
+def GameWorldcupView(request):
+
+    return render(request, 'worldcup.html')
