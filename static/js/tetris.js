@@ -176,7 +176,7 @@ document.addEventListener("keydown", e => {
         case 40:
             moveBlock("top", 1);
             break;
-        case 32:
+        case 90:
             changeDirection();
             break;
         case 38:
