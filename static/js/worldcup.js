@@ -8,7 +8,7 @@ picture_array[5] = "../static/bg06.png";
 picture_array[6] = "../static/bg07.png";
 picture_array[7] = "../static/bg08.png";
 
-const playground = document.querySelector(".playground");
+
 var randomIndex = 0
 var randomIndex2 = 0
 var Indexlistget = new Array();
@@ -91,6 +91,9 @@ function EndGame(){
     console.log('이거는 작동할테고')
     if (picture_array.length % 2 == 1){
         console.log('이거는 작동하냐')
+//        localStorage.setitem('keyyy', 'vallllue')
+        window.location.replace("//127.0.0.1:8000/play/worldcup_create");
+//        url.searchParams.set('data', data);
         document.body.innerHTML = ''
         play_img = document.createElement('img');
         play_img.setAttribute('style', 'width: 50rem; height: 50rem;');
@@ -104,9 +107,6 @@ function EndGame(){
 
 
 function playImage(){
-
-
-
     document.body.innerHTML = ''
     play_time = document.createElement('h1');
     play_time.setAttribute('style', 'text-align: center;');
