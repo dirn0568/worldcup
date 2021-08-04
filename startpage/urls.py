@@ -1,7 +1,8 @@
+
 from django.urls import path, reverse
 
 from startpage import views
-from startpage.views import GameDetailView, CreateWorldcup
+from startpage.views import GameDetailView, CreateWorldcup, DetailWorldcup
 
 app_name='game'
 
@@ -15,7 +16,10 @@ urlpatterns = [
 
     path('worldcup', views.GameWorldcupView, name='worldcup'),
     path('worldcup_create', CreateWorldcup.as_view(), name='worldcup_create'),
+    path('worldcup_detail/<int:pk>', DetailWorldcup.as_view(), name='worldcup_detail'),
     path('worldcup_end', views.GameWorldcupEndView, name='worldcup_end'),
+
+    path('worldcup_test/<number>', views.testing555, name='worldcup_test'),
 ]
 
 

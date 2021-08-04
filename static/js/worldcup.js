@@ -1,12 +1,12 @@
 var picture_array = new Array();
-picture_array[0] = "../static/bg01.png";
-picture_array[1] = "../static/bg02.png";
-picture_array[2] = "../static/bg03.png";
-picture_array[3] = "../static/bg04.png";
-picture_array[4] = "../static/bg05.png";
-picture_array[5] = "../static/bg06.png";
-picture_array[6] = "../static/bg07.png";
-picture_array[7] = "../static/bg08.png";
+picture_array[0] = "/static/bg01.png";
+picture_array[1] = "/static/bg02.png";
+picture_array[2] = "/static/bg03.png";
+picture_array[3] = "/static/bg04.png";
+picture_array[4] = "/static/bg05.png";
+picture_array[5] = "/static/bg06.png";
+picture_array[6] = "/static/bg07.png";
+picture_array[7] = "/static/bg08.png";
 
 
 var randomIndex = 0
@@ -82,7 +82,9 @@ function Nextlevel(){
     }
     console.log(picture_array)
     picture_array.splice(0, Indexlistget.length*2);
-    console.log(picture_array)
+    console.log(picture_array, '#!$%!%!@#$%!#%!#@%!@#이거지롱')
+    console.log(picture_array[0], '#!$%!%!@#$%!#%!#@%!@#이거지롱')
+//    console.log(picture_array[0] -= '/static')
     Indexlistget.splice(0);
     Indexlistpop.splice(0);
 }
@@ -92,7 +94,9 @@ function EndGame(){
     if (picture_array.length % 2 == 1){
         console.log('이거는 작동하냐')
 //        localStorage.setitem('keyyy', 'vallllue')
-        window.location.replace("//127.0.0.1:8000/play/worldcup_create");
+        console.log(picture_array)
+        console.log(picture_array[0])
+        window.location.replace("//127.0.0.1:8000/play/worldcup_test" + '/' + 3);
 //        url.searchParams.set('data', data);
         document.body.innerHTML = ''
         play_img = document.createElement('img');

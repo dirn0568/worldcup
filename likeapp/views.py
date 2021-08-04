@@ -31,6 +31,7 @@ class LikeArticleView(RedirectView):
     def get(self, *args, **kwargs):
         print('실행중?22222222222222')
         user = self.request.user
+        print(args, '####################################')
         article = get_object_or_404(ArticleCreateModel, pk=kwargs['pk'])
 
         try:
