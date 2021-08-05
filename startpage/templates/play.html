@@ -9,7 +9,7 @@
     <body>
         <div style='width:100%; height:400px;float:left;'>
           <div style="width:25%; height:330px; float:left;">
-              <video controls preload="none" src="{% static '001.webm' %}" width="560" height="315"></video>
+              <video controls="autoplay" src="{% static '004.webm' %}" width="560" height="315"></video>
               <form action="{% url 'game:game' %}" method="post">
                   {% csrf_token %}
                   <h1>Meteo</h1>

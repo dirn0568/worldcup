@@ -1,12 +1,12 @@
 var picture_array = new Array();
-picture_array[0] = "/static/bg01.png";
-picture_array[1] = "/static/bg02.png";
-picture_array[2] = "/static/bg03.png";
-picture_array[3] = "/static/bg04.png";
-picture_array[4] = "/static/bg05.png";
-picture_array[5] = "/static/bg06.png";
-picture_array[6] = "/static/bg07.png";
-picture_array[7] = "/static/bg08.png";
+picture_array[0] = "/static/001.webm";
+picture_array[1] = "/static/002.webm";
+picture_array[2] = "/static/003.webm";
+picture_array[3] = "/static/004.webm";
+picture_array[4] = "/static/005.mp3";
+picture_array[5] = "/static/006.mp3";
+picture_array[6] = "/static/007.mp3";
+picture_array[7] = "/static/008.mp3";
 
 
 var randomIndex = 0
@@ -67,6 +67,8 @@ function Playcheck(num, num2){
         round = 1
     }
     Playgame()
+    video1.load();
+    video2.load();
     playImage()
     if (end){
         EndGame()
@@ -96,7 +98,7 @@ function EndGame(){
 //        localStorage.setitem('keyyy', 'vallllue')
         console.log(picture_array)
         console.log(picture_array[0])
-        window.location.replace("//127.0.0.1:8000/play/worldcup_test" + '/' + 3);
+        window.location.replace("//127.0.0.1:8000/play/worldcup_test" + picture_array[0]);
 //        url.searchParams.set('data', data);
         document.body.innerHTML = ''
         play_img = document.createElement('img');
@@ -107,8 +109,6 @@ function EndGame(){
         end = true;
     }
 }
-
-
 
 function playImage(){
     document.body.innerHTML = ''
@@ -122,33 +122,41 @@ function playImage(){
     document.body.append(play_time);
 
     play_div = document.createElement('div');
-    play_div.setAttribute('style', 'float: left;');
+    play_div.setAttribute('style', 'float: left; width: 40%');
     play_box = document.createElement('a');
-    play_box.setAttribute('href', '#none');
+    play_box.setAttribute('href', '#');
     play_box.onclick=function(){Playcheck(randomIndex, randomIndex2)};
-    play_img = document.createElement('img');
-    play_img.setAttribute('style', 'width: 50rem; height: 50rem;');
+    play_img = document.createElement('video');
+    play_img.setAttribute('id', 'video1');
+    play_img.setAttribute('controls', 'mute');
+    play_img.setAttribute('width', '100%;');
+    play_img.setAttribute('height', '100%;');
+    console.log(picture_array[randomIndex]);
     play_img.setAttribute('src', picture_array[randomIndex]);
 
-    document.body.append(play_box);
-    play_box.append(play_div);
-    play_div.append(play_img)
+    document.body.append(play_div);
+    play_div.append(play_box);
+    play_box.append(play_img)
 
 
     play_div2 = document.createElement('div');
-    play_div2.setAttribute('style', 'padding: 10rem 5rem 0px 5rem; float: left;');
+    play_div2.setAttribute('style', 'padding: 10rem 5rem 0px 7rem; float: left;');
     play_vs = document.createElement('h1');
     play_div2.append('VS');
     document.body.append(play_vs);
     play_vs.append(play_div2);
 
     play_div3 = document.createElement('div');
-    play_div3.setAttribute('style', 'float: left;');
+    play_div3.setAttribute('style', 'float: right; width: 40%;');
     play_box2 = document.createElement('a');
-    play_box2.setAttribute('href', '#none');
+    play_box2.setAttribute('href', '#');
+    play_box2.setAttribute('video', 'pause');
     play_box2.onclick=function(){Playcheck(randomIndex2, randomIndex)};
-    play_img2 = document.createElement('img');
-    play_img2.setAttribute('style', 'width: 50rem; height: 50rem;');
+    play_img2 = document.createElement('video');
+    play_img2.setAttribute('id', 'video2');
+    play_img2.setAttribute('controls', 'mute');
+    play_img2.setAttribute('width', '100%;');
+    play_img2.setAttribute('height', '100%;');
     play_img2.setAttribute('src', picture_array[randomIndex2]);
     document.body.append(play_div3);
     play_div3.append(play_box2);
