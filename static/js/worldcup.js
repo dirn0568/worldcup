@@ -98,7 +98,7 @@ function EndGame(){
 //        localStorage.setitem('keyyy', 'vallllue')
         console.log(picture_array)
         console.log(picture_array[0])
-        window.location.replace("/play/worldcup_test" + picture_array[0]);
+        window.location.replace("//158.247.198.187/play/worldcup_test" + picture_array[0]);
 //        url.searchParams.set('data', data);
         document.body.innerHTML = ''
         play_img = document.createElement('img');
