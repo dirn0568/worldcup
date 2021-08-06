@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-  이상형월드컵끝
-    {{ loke.like_1 }}
-    {{ loke.like_2 }}
-    {{ loke.like_3 }}
-    {{ loke.like_4 }}
-    {{ loke.like_5 }}
-    {{ loke.like_6 }}
-    {{ loke.like_7 }}
-    {{ loke.like_8 }}
-  <p></p>
-  1등 {{ winner_list.0 }}%
-  <p></p>
-  2등 {{ winner_list.1 }}%
-  <p></p>
-  3등 {{ winner_list.2 }}%
-  <p></p>
-  4등 {{ winner_list.3 }}%
-  <p></p>
-  5등 {{ winner_list.4 }}%
-  <p></p>
-  6등 {{ winner_list.5 }}%
-  <p></p>
-  7등 {{ winner_list.6 }}%
-  <p></p>
-  8등 {{ winner_list.7 }}%
-  <p></p>
-  {{ winner_list }}
+  <div style="text-align: center;">
+    <h1>이상형월드컵끝</h1>
+  </div>
 
- {{ zerotwo }}
+  <div>
+    <h1>{{ img_name }}</h1>
+    <video controls="autoplay" src="/static/{{ img }}" width="500" height="500"></video>
+  </div>
+
+  <div style="float: right;">
+    <p></p>
+    1등 {{ winner_list.0 }}% {{ win1 }}
+    <video controls="autoplay" src="/static/{{ img1 }}" width="200" height="200"></video>
+    <p></p>
+    2등 {{ winner_list.1 }}% {{ win2 }}
+    <video controls="autoplay" src="/static/{{ img2 }}" width="200" height="200"></video>
+    <p></p>
+    3등 {{ winner_list.2 }}% {{ win3 }}
+    <video controls="autoplay" src="/static/{{ img3 }}" width="200" height="200"></video>
+    <p></p>
+    4등 {{ winner_list.3 }}% {{ win4 }}
+    <video controls="autoplay" src="/static/{{ img4 }}" width="200" height="200"></video>
+    <p></p>
+    5등 {{ winner_list.4 }}% {{ win5 }}
+    <video controls="autoplay" src="/static/{{ img5 }}" width="200" height="200"></video>
+    <p></p>
+    6등 {{ winner_list.5 }}% {{ win6 }}
+    <video controls="autoplay" src="/static/{{ img6 }}" width="200" height="200"></video>
+    <p></p>
+    7등 {{ winner_list.6 }}% {{ win7 }}
+    <video controls="autoplay" src="/static/{{ img7 }}" width="200" height="200"></video>
+    <p></p>
+    8등 {{ winner_list.7 }}% {{ win8 }}
+    <video controls="autoplay" src="/static/{{ img8 }}" width="200" height="200"></video>
+    <p></p>
+  </div>
 
 
 </body>

@@ -3,10 +3,10 @@ picture_array[0] = "/static/001.webm";
 picture_array[1] = "/static/002.webm";
 picture_array[2] = "/static/003.webm";
 picture_array[3] = "/static/004.webm";
-picture_array[4] = "/static/005.mp3";
-picture_array[5] = "/static/006.mp3";
-picture_array[6] = "/static/007.mp3";
-picture_array[7] = "/static/008.mp3";
+picture_array[4] = "/static/005.mp4";
+picture_array[5] = "/static/006.mp4";
+picture_array[6] = "/static/007.mp4";
+picture_array[7] = "/static/008.mp4";
 
 
 var randomIndex = 0

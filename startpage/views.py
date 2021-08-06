@@ -60,9 +60,6 @@ def GameWorldcupEndView(request):
     print(loke)
     return render(request, 'worldcup_end.html', context)
 
-# class DetailWorldcup(DetailView):
-#     model = WorldcupModel
-#     context_object_name = 'target_worldcup'
 
 class CreateWorldcup(CreateView):
     model = WorldcupModel
@@ -80,77 +77,48 @@ class CreateWorldcup(CreateView):
         print(self.object, '2131231241251512')
         return reverse('game:worldcup_detail', kwargs={'pk': self.object.pk})
 
-    # def get_redirect_url(self, context_object_name):
-    #     print('실행중?11111111111111111')
-    #     return reverse('game:worldcup_end')
-    # def get_success_url(self, context_object_name):
-    #     return reverse('game:worldcup_end')
 
 class DetailWorldcup(DetailView):
     model = WorldcupModel
     context_object_name = 'target_worldcup'
     template_name = 'worldcup_detail.html'
 
-# class WorldcupClass(View):
-#     model = WorldcupModel
-
-# class rwyrwywView(RedirectView):
-#     def get_redirect_url(self, *args, **kwargs):
-#         return reverse('articleapp:article_detail', kwargs={'pk': kwargs['pk']})
-#
-#     def get(self, *args, **kwargs):
-#         user = self.request.user
-#         article = get_object_or_404(ArticleCreateModel, pk=kwargs['pk'])
-#
-#         try:
-#             db_transaction(user, article)
-#             messages.add_message(self.request, messages.SUCCESS, '좋아요가 반영되었습니다.')
-#         except ValidationError:
-#             return HttpResponseRedirect(reverse('articleapp:article_detail', kwargs={'pk': kwargs['pk']}))
-#
-#         return super(LikeArticleView, self).get(self.request, *args, **kwargs)
 
 def testing555(request, number):
-    print(WorldcupModel.objects)
-    loke = WorldcupModel.objects.filter(pk=1)
-    print(number, '31513513531531')
-    print(loke)
-    # print(loke.like_1)
+    loke = WorldcupModel.objects.filter(pk=5)
     for intp in loke:
-        # intp.like_1 = 1
-        # intp.like_2 = 1
-        # intp.like_3 = 1
-        # intp.like_4 = 1
-        # intp.like_5 = 1
-        # intp.like_6 = 1
-        # intp.like_7 = 1
-        # intp.like_8 = 1
-        print(intp)
-        print(intp.like_1)
         if number == '001.webm':
             print('이거 작동안돼1?')
             intp.like_1 += 1
+            img_name = 'meteo'
         elif number == '002.webm':
             print('이거 작동안돼?2')
             intp.like_2 += 1
+            img_name = 'VVS'
         elif number == '003.webm':
             print('이거 작동안돼?3')
             intp.like_3 += 1
+            img_name = '밝게 빛나는 별이되어'
         elif number == '004.webm':
             print('이거 작동안돼?4')
             intp.like_4 += 1
-        elif number == '005.mp3':
+            img_name = '오래된 노래'
+        elif number == '005.mp4':
             print('이거 작동안돼?5')
             intp.like_5 += 1
-        elif number == '006.mp3':
+            img_name = 'blue'
+        elif number == '006.mp4':
             print('이거 작동안돼?6')
             intp.like_6 += 1
-        elif number == '007.mp3':
+            img_name = '하루하루'
+        elif number == '007.mp4':
             print('이거 작동안돼?7')
             intp.like_7 += 1
-        elif number == '008.mp3':
+            img_name = 'shape of you'
+        elif number == '008.mp4':
             print('이거 작동안돼?8')
             intp.like_8 += 1
+            img_name = 'Counting Stars'
         intp.save()
         zerotwo = intp.like_1 + intp.like_2 + intp.like_3 + intp.like_4 + intp.like_5 + intp.like_6 + intp.like_7 + intp.like_8
         winner1 = round(intp.like_1 / zerotwo * 100, 1)
@@ -162,9 +130,19 @@ def testing555(request, number):
         winner7 = round(intp.like_7 / zerotwo * 100, 1)
         winner8 = round(intp.like_8 / zerotwo * 100, 1)
         winner_list = [winner1, winner2, winner3, winner4, winner5, winner6, winner7, winner8]
+        winner_list2 = {intp.like_1:['메테오','001.webm'],
+                        intp.like_2:['VVS','002.webm'],
+                        intp.like_3:['밝게빛나는별이되어','003.webm'],
+                        intp.like_4:['오래된 노래','004.webm'],
+                        intp.like_5:['blue','005.mp4'],
+                        intp.like_6:['하루하루','006.mp4'],
+                        intp.like_7:['shape of you','007.mp4'],
+                        intp.like_8:['Counting Stars','008.mp4']}
+        winner_list3 = [intp.like_1, intp.like_2, intp.like_3, intp.like_4, intp.like_5, intp.like_6, intp.like_7, intp.like_8]
         winner_list.sort()
         winner_list.reverse()
-        # 사전? 또 다른 리스트?
+        winner_list3.sort()
+        winner_list3.reverse()
         context = {'loke': intp,
                    'winner1' : winner1,
                    'winner2' : winner2,
@@ -175,5 +153,25 @@ def testing555(request, number):
                    'winner7' : winner7,
                    'winner8' : winner8,
                    'zerotwo' : zerotwo,
-                   'winner_list' : winner_list}
+                   'win1': winner_list2[winner_list3[0]][0],
+                   'win2': winner_list2[winner_list3[1]][0],
+                   'win3': winner_list2[winner_list3[2]][0],
+                   'win4': winner_list2[winner_list3[3]][0],
+                   'win5': winner_list2[winner_list3[4]][0],
+                   'win6': winner_list2[winner_list3[5]][0],
+                   'win7': winner_list2[winner_list3[6]][0],
+                   'win8': winner_list2[winner_list3[7]][0],
+                   'img' : number,
+                   'img_name': img_name,
+                   'img1' : winner_list2[winner_list3[0]][1],
+                   'img2' : winner_list2[winner_list3[1]][1],
+                   'img3' : winner_list2[winner_list3[2]][1],
+                   'img4' : winner_list2[winner_list3[3]][1],
+                   'img5' : winner_list2[winner_list3[4]][1],
+                   'img6' : winner_list2[winner_list3[5]][1],
+                   'img7' : winner_list2[winner_list3[6]][1],
+                   'img8' : winner_list2[winner_list3[7]][1],
+                   'winner_list' : winner_list,
+                   'winner_list2' : winner_list2,
+                   'winner_list3' : winner_list3 }
     return render(request, 'worldcup_end.html', context)
