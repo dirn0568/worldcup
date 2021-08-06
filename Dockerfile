@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "tes1351353513213"
+RUN echo "adfadfsdfafdafasfasfds"
 
 RUN git clone https://www.github.com/dirn0568/zerotwo.git
 
